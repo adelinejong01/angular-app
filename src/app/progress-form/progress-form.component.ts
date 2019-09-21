@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { cards } from '../cards.component';
 import { FormBuilder } from '@angular/forms';
 declare var $: any;
 
@@ -8,9 +10,10 @@ declare var $: any;
   styleUrls: ['./progress-form.component.css'],
 })
 
-export class ProgressFormComponent {
+export class ProgressFormComponent  {
   paymentForm;
-  constructor(){}
+ 
+ 
     /*private formBuilder: FormBuilder,
     ) {
 

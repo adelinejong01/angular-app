@@ -7,6 +7,9 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CardTabsComponent } from './card-tabs/card-tabs.component';
 import { ViewCardsComponent } from './view-cards/view-cards.component';
 import { ProgressFormComponent } from './progress-form/progress-form.component';
+import { RouterModule } from '@angular/router';
+import { NotificationComponent } from './notification/notification.component';
+import { CardDetailsComponent } from './card-details/card-details.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,17 @@ import { ProgressFormComponent } from './progress-form/progress-form.component';
     BreadcrumbComponent,
     CardTabsComponent,
     ViewCardsComponent,
-    ProgressFormComponent
+    ProgressFormComponent,
+    NotificationComponent,
+    CardDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot([
+  { path: 'viewcards', component: ViewCardsComponent },
+  { path: 'cards/:cardId', component: CardDetailsComponent },
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
