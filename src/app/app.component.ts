@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 declare var $: any;
 @Component({
@@ -10,10 +11,24 @@ declare var $: any;
 })
 @NgModule({
   imports: [
-    FormsModule,    //added here too
-    ReactiveFormsModule //added here too
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AppComponent {
   title = 'angularApp';
+   todaydate;
+   componentproperty;
+   emailid;
+   formdata;
+   ngOnInit() {
+      this.formdata = new FormGroup({
+         emailid: new FormControl("", Validators.compose([
+            Validators.required,
+            Validators.pattern("[^ @]*@[^ @]*")
+         ])),
+         passwd: new FormControl("")
+      });
+   }
+   onClickSubmit(data) {this.emailid = data.emailid;}
 }

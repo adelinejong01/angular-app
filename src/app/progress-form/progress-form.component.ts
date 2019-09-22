@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { cards } from '../cards.component';
-import { FormBuilder } from '@angular/forms';
-declare var $: any;
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-progress-form',
@@ -11,20 +8,19 @@ declare var $: any;
 })
 
 export class ProgressFormComponent  {
-  paymentForm;
- 
- 
-    /*private formBuilder: FormBuilder,
-    ) {
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
-      this.paymentForm = this.formBuilder.group({
-        name: '',
-        address: ''
-      });
-    }
-    onSubmit(customerData) {
-      console.warn('Your order has been submitted', customerData);
-      this.paymentForm.reset();
-    } */
-  
+  constructor(private _formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
+ 
 }

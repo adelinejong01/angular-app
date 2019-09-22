@@ -1,5 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MaterialModule} from './material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,10 +28,17 @@ import { CardDetailsComponent } from './card-details/card-details.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MatStepperModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     RouterModule.forRoot([
   { path: 'viewcards', component: ViewCardsComponent },
   { path: 'cards/:cardId', component: CardDetailsComponent },
+  { path: 'progressform', component: ProgressFormComponent },
     ])
   ],
   providers: [],

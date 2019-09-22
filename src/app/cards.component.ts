@@ -1,7 +1,7 @@
 export const cards = [
     {
       name: 'Low Rate Card',
-      limit: 700,
+      limit: 699,
       description: 'A low rate card with one of the best rates any has offered'
     },
     {

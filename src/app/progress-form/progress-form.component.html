@@ -1,247 +1,55 @@
-<div class="container" id="myWizard">
-        <div class="row">
-        <div class="col-xs-10 col-md-10">
-          <h3><span class="glyphicon glyphicon-lock"></span>Secure Checkout</h3>
-          <div *ngIf="card">
-                <h3>{{ card.name }}</h3>
-                <h4>{{ card.limit }}</h4>
-                <p>{{ card.description }}</p>
-              
-              </div>
-        </div>
-        
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
+
+<h3 style="margin-top:70px;">Find the right card in a few simple steps</h3>
+<div class="mat-app-background basic-container">
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Pay off</ng-template>
+      
+        <h5>How much would you pay off each month?</h5>
+          <mat-button-toggle-group name="payOption" aria-label="Font Style">
+              <mat-button-toggle value="minimum">The minimum repayment</mat-button-toggle>
+              <mat-button-toggle value="depends">Depends on the month
+                </mat-button-toggle>
+              <mat-button-toggle value="closing">All of the closing balance
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        <!--<mat-form-field>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field> -->
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Annual income range</ng-template>
+      <mat-button-toggle-group name="payOption" aria-label="Font Style">
+          <mat-button-toggle value="range1">$25,000 - $34,999            </mat-button-toggle>
+          <mat-button-toggle value="range2">$35,000 - $74,999            </mat-button-toggle>
+          <mat-button-toggle value="range3">$75,000 or over </mat-button-toggle>
+      </mat-button-toggle-group>
+      <!--
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>-->
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <h5>You have completed the form.</h5>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.Submit()">Show Recommendation</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
 </div>
-      <hr>
-      <div class="progress">
-          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" style="width: 25%;">
-              Step 1 of 4
-          </div>
-      </div>
-      <div class="navbar">
-          <div class="navbar-inner">
-              <ul class="nav nav-pills nav-wizard">
-                  <li class="active">
-                      <a href="#step1" data-toggle="tab" data-step="1">1. Details</a>
-                
-                  </li>
-                  <li class="disabled">
-
-                      <a href="#step2" data-toggle="tab" data-step="2">2. Shipping</a>
-                    
-                  </li>
-                  <li class="disabled">
-                      <a href="#step3" data-toggle="tab" data-step="3">3. Payment</a>
-                   
-                  </li>
-                  <li class="disabled">
-
-                      <a href="#step4" data-toggle="tab" data-step="4">4. Review</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-      <div class="tab-content">
-          <div class="tab-pane in active" id="step1">
-              <h3>1. Details</h3>
-              <div class="well">
-                  <div class="row">
-                      <div class="col-xs-12 col-md-12">
-                          <div class="form-group ">
-                              <label>Email</label>
-                              <input formControlName="email" class="form-control input-lg" placeholder="Email">
-                              <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                              <span id="inputError2Status" class="sr-only">(error)</span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-xs-6 col-md-6">
-                          <div class="form-group">
-                              <label>First Name</label>
-                              <input formControlName="firstname" class="form-control input-lg">
-                          </div>
-                      </div>
-                      <div class="col-xs-6 col-md-6 pull-right">
-                          <div class="form-group">
-                              <label>Last Name</label>
-                              <input formControlName="lastname" class="form-control input-lg">
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="row">
-                      <div class="col-xs-6 col-md-6">
-                          <button class="btn btn-primary btn-lg btn-block next" type="submit">Continue</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="tab-pane fade" id="step2">
-              <h3>2. Shipping</h3>
-              <div class="well">
-                  <div>
-                      <dl class="sp-methods">
-                          <dt>Express Shipping</dt>
-                          <dd>
-                        
-                                      <input formControlName="shipping_method" type="radio" value="flatrate2_flatrate2" id="s_method_flatrate2_flatrate2" class="radio">
-                                      <label for="s_method_flatrate2_flatrate2">1-2 Business Days                                                                                                 <span class="price">$14.95</span>                                                            </label>
-                               
-                          </dd>
-                          <dt>Standard Shipping </dt>
-                          <dd>
-                              
-                                      <input formControlName="shipping_method" type="radio" value="flatrate_flatrate" id="s_method_flatrate_flatrate" class="radio">
-                                      <label for="s_method_flatrate_flatrate">2-4 Business Days                                                                                                 <span class="price">$9.95</span></label>
-                          </dd>
-                      </dl>
-                  </div>
-                  <div class="row">
-                      <div class="col-xs-12 col-md-12">
-                          <p>It is our priority to deliver your order as quickly as possible, which is why we offer same day dispatch on orders placed before 12:00pm AEST Monday to Friday.<br>
-                              Any order placed after 12:00pm AEST or on a weekend will be dispatched the next business day.</p>
-                      </div>
-                  </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="">
-                        <div class="btn-group btn-group-lg" role="group" aria-label="">
-                          <button class="btn btn-default back" type="button"><span class="glyphicon glyphicon-chevron-left">&nbsp;Back</span></button>
-                      
-                        </div>
-                  <div class="btn-group btn-group-lg" role="group" aria-label="">
-                          <button class="btn btn-primary btn-lg btn-block next" type="submit">Continue&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="tab-pane fade" id="step3">
-              <div class="row">
-                  <div class="panel panel-default credit-card-box">
-                      <div class="panel-heading display-table">
-                          <div class="row display-tr">
-                              <h3 class="panel-title display-td">Payment Details</h3>
-                              
-                          </div>
-                      </div>
-                      <div class="panel-body">
-                        <!--  <form [formGroup]="payment-form">-->
-                        <form role="form" id="payment-form">
-                              <div class="row">
-                                  <div class="col-xs-7 col-md-7">
-                                      <div class="form-group">
-                                          <label for="cardNumber">CARD NUMBER</label>
-                                          <div class="input-group">
-                                              <input type="tel" class="form-control" formControlName="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required="" autofocus="">
-                                              <span class="input-group-addon">
-                                                  <i class="fa fa-credit-card"></i>
-                                              </span>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-xs-7 col-md-7">
-                                      <div class="form-group">
-                                          <label for="cardExpiry">
-                                              <span class="hidden-xs">EXPIRATION</span>
-                                              <span class="visible-xs-inline">EXP</span> DATE
-                                          </label>
-                                          <input type="tel" class="form-control" formControlName="cardExpiry" placeholder="MM / YY" autocomplete="cc-exp" required="">
-                                      </div>
-                                  </div>
-                                  <div class="col-xs-5 col-md-5 pull-right">
-                                      <div class="form-group">
-                                          <label for="cardCVC">CV CODE</label>
-                                          <input type="tel" class="form-control" formControlName="cardCVC" placeholder="CVC" autocomplete="cc-csc" required="">
-                                      </div>
-                                  </div>
-                              </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="">
-                        <div class="btn-group btn-group-lg" role="group" aria-label="">
-                          <button class="btn btn-default back" type="button">Back</button>
-                      
-                        </div>
-                  <div class="btn-group btn-group-lg" role="group" aria-label="">
-                                      <button class="btn btn-primary btn-lg btn-block next" type="submit">Continue</button>
-                                  </div>
-                              </div>
-                              <div class="row" style="display:none;">
-                                  <div class="col-xs-12">
-                                      <p class="payment-errors"></p>
-                                  </div>
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="tab-pane fade" id="step4">
-              <div class="well">
-                  <h3>4. Review Order</h3> Add another almost done step here..
-                  <div class="row">
-                      <div class="col-xs-12 col-md-12">
-                          <table class="table">
-                              <colgroup><col>
-                                  <col width="1">
-                                  <col width="1">
-                              </colgroup><thead>
-                                  <tr>
-                                      <th class="name">Product Name</th>
-                                      <th class="qty">Qty</th>
-                                      <th class="total">Subtotal</th>
-                                  </tr>
-                              </thead>
-                              <tfoot>
-                                  <tr>
-                                      <td class="a-right" colspan="2">
-                                          Tax            </td>
-                                      <td class="a-right"><span class="price">$3.18</span></td>
-                                  </tr>
-                                  <tr>
-                                      <td  class="a-right" colspan="2">
-                                          Subtotal    </td>
-                                      <td class="a-right">
-                                          <span class="price">$18.18</span>    </td>
-                                  </tr>
-                                  <tr>
-                                      <td class="a-right" colspan="2">
-                                          Shipping &amp; Handling (Express Shipping - 1-2 Business Days)    </td>
-                                      <td class="a-right">
-                                          <span class="price">$14.95</span>    </td>
-                                  </tr>
-                              </tfoot>
-                              <tbody>
-                                  <tr>
-                                      <td>
-                                          <h3 class="product-name">Hulk Singlet Black </h3>
-                                          <dl class="item-options">
-                                              <dt>Size</dt>
-                                              <dd>M                                    </dd>
-                                          </dl>
-                                      </td>
-                                      <td class="a-center">1</td>
-                                      <td>
-                                          <span class="cart-price">
-                                              <span class="price">$20.00</span>                            </span>
-                                      </td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="">
-                        <div class="btn-group btn-group-lg" role="group" aria-label="">
-                          <button class="btn btn-default back" type="button">Back</button>
-                      
-                        </div>
-                  <div class="btn-group btn-group-lg" role="group" aria-label="">
-                      <button class="btn btn-success next" type="submit">Place Order</button>
-                  </div>
-                </div>
-              </div>
-
-          </div>
-      </div></div>
-
-
-  <div id="push"></div>
-<script src="./progress-form.component.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"></script>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { cards } from '../cards.component';
+
 
 @Component({
   selector: 'app-card-details',
@@ -8,7 +10,7 @@ import { cards } from '../cards.component';
   styleUrls: ['./card-details.component.css']
 })
 export class CardDetailsComponent implements OnInit {
- card;
+ @Input() card;
   constructor(
     private route: ActivatedRoute,
   ) { }
