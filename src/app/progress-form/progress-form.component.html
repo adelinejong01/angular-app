@@ -4,15 +4,14 @@
 <div class="mat-app-background basic-container">
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" (ngSubmit)="form1('test')" #formone="ngForm">
       <ng-template matStepLabel>Pay off</ng-template>
-      
         <h5>How much would you pay off each month?</h5>
           <mat-button-toggle-group name="payOption" aria-label="Font Style">
-              <mat-button-toggle value="minimum">The minimum repayment</mat-button-toggle>
-              <mat-button-toggle value="depends">Depends on the month
+              <mat-button-toggle value="minimum" #minBtn>The minimum repayment</mat-button-toggle>
+              <mat-button-toggle value="depends" #dependsBtn>Depends on the month
                 </mat-button-toggle>
-              <mat-button-toggle value="closing">All of the closing balance
+              <mat-button-toggle value="closing" #closingBtn>All of the closing balance
                 </mat-button-toggle>
             </mat-button-toggle-group>
         <!--<mat-form-field>
@@ -26,7 +25,7 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Annual income range</ng-template>
-      <mat-button-toggle-group name="payOption" aria-label="Font Style">
+      <mat-button-toggle-group name="payOption" aria-label="Font Style" #payOption>
           <mat-button-toggle value="range1">$25,000 - $34,999            </mat-button-toggle>
           <mat-button-toggle value="range2">$35,000 - $74,999            </mat-button-toggle>
           <mat-button-toggle value="range3">$75,000 or over </mat-button-toggle>
@@ -46,10 +45,12 @@
     <h5>You have completed the form.</h5>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.Submit()">Show Recommendation</button>
+      <button mat-button type="button" (click)="stepper.reset()">Reset</button>
+      <button mat-button type="button" (click)="formone.ngSubmit.emit();">Submit</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
 </div>
+<div>minimum: {{ minBtn.checked }}</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"></script>

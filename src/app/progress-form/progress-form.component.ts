@@ -16,11 +16,21 @@ export class ProgressFormComponent  {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+
+      //firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      //secondCtrl: ['', Validators.required]
     });
+
   }
+
+  form1(str1){
+    console.log(str1);
+  }
+
+
+
+  
  
 }

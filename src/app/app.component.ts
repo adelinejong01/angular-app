@@ -17,18 +17,8 @@ declare var $: any;
 })
 export class AppComponent {
   title = 'angularApp';
-   todaydate;
-   componentproperty;
-   emailid;
-   formdata;
-   ngOnInit() {
-      this.formdata = new FormGroup({
-         emailid: new FormControl("", Validators.compose([
-            Validators.required,
-            Validators.pattern("[^ @]*@[^ @]*")
-         ])),
-         passwd: new FormControl("")
-      });
-   }
-   onClickSubmit(data) {this.emailid = data.emailid;}
+   
+  navLinks = [ {path: "viewcards", label: "View Cards"}, {path: "progressform", label: "Help Me Choose"}
+
+  ];
 }

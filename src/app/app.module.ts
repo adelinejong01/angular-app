@@ -15,6 +15,7 @@ import { ProgressFormComponent } from './progress-form/progress-form.component';
 import { RouterModule } from '@angular/router';
 import { NotificationComponent } from './notification/notification.component';
 import { CardDetailsComponent } from './card-details/card-details.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -30,13 +31,14 @@ import { CardDetailsComponent } from './card-details/card-details.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatStepperModule,
+    MatTabsModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     RouterModule.forRoot([
-  { path: 'viewcards', component: ViewCardsComponent },
+  { path: 'viewcards', component: ViewCardsComponent  },
   { path: 'cards/:cardId', component: CardDetailsComponent },
   { path: 'progressform', component: ProgressFormComponent },
     ])

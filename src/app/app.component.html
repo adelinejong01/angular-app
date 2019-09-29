@@ -58,13 +58,19 @@
   <!-- Content section -->
   <section class="py-5">
     <div class="container">
-        <app-card-tabs></app-card-tabs>
-      <h1 style="padding-top:20px;">Our Credit Cards</h1>
-      <p class="lead">Card categories.</p>
-      <p>Find the credit card that’s right for you. Whether you’re looking for a credit card with travel and rewards benefits, a balance transfer, a low interest rate or no annual fee, you’ll find it</p>
+        <nav mat-tab-nav-bar>
+        <a mat-tab-link
+          *ngFor="let link of navLinks"
+          [routerLink]="link.path"
+          routerLinkActive #rla="routerLinkActive"
+          [active]="rla.isActive">
+          {{link.label}}
+        </a>
+        </nav>
+        <router-outlet></router-outlet>
     </div>
   </section>
-<app-view-cards></app-view-cards>
+
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
